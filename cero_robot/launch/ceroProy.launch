@@ -1,0 +1,28 @@
+<launch> 
+
+    <!-- GAZEBO -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"/> 
+    <include file="$(find two_wheels_description)/launch/spawn.launch"/> 
+
+    <!-- JOY TWIST -->
+	<include file="$(find teleop_twist_joy)/launch/teleop.launch"/> 	
+
+
+	
+	<!-- FOLLOWER -->
+    <node pkg="cero_robot" type="object_follower.py" name="object_follower"> 
+    	<remap from="cmd_vel" to="cmd_vel_auto"/>
+    </node>
+
+    
+    
+    <!-- MUX & MENU -->
+    <node pkg="topic_tools" type="mux" name="mux_cmdvel" args="cmd_vel cmd_vel_joy cmd_vel_auto mux:=mux_cmdvel"/>    
+   
+    <!--
+    <node pkg="beginner_tutorials" type="menu.py" name="menu"/> 
+    -->
+
+    
+
+</launch> 
