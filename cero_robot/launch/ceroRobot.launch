@@ -1,5 +1,5 @@
-<launch> 
-    <!--
+<launch>
+    
     <!-- RPLIDAR-->
     <include file="$(find rplidar_ros)/launch/rplidar.launch"/> 
 
